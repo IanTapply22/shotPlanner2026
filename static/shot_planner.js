@@ -110,8 +110,10 @@ function drawTrajectoryCanvas() {
         for (let i = 0; i < x_range.length; i++) {
             for (let j = 0; j < y_range.length; j++) {
                 const intensity = area_grid[i][j] / maxArea;
-                const hue = 240 - intensity * 240; // Blue to red
-                trajCtx.fillStyle = `hsl(${hue}, 70%, 60%)`;
+                const hue = intensity * 120; // 0 = red, 120 = green
+                const saturation = 100;
+                const lightness = 50;
+                trajCtx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
                 
                 const cx = toCanvasX(x_range[i]);
                 const cy = toCanvasY(y_range[j]);
