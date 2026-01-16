@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRC 2026 Shot Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        canvas {
+            border: 1px solid #ddd;
+            cursor: crosshair;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .canvas-wrapper {
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .canvas-title {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .info-panel {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .info-value {
+            color: #333;
+        }
+        
+        .status-success {
+            color: #28a745;
+        }
+        
+        .status-fail {
+            color: #dc3545;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FRC 2026 Shot Planner</h1>
+        <p class="subtitle">
+            A projectile motion simulator with drag. The color gradient shows the size of the allowable error (pitch × yaw × speed) in making the shot.
+        </p>
+        
+        <div class="canvas-container">
+            <div class="canvas-wrapper">
+                <div class="canvas-title">Drag to change shoot position</div>
+                <canvas id="trajectoryCanvas" width="700" height="600"></canvas>
+            </div>
+            
+            <div class="canvas-wrapper">
+                <div class="canvas-title">Drag to change shoot angle and speed</div>
+                <canvas id="angleSpeedCanvas" width="700" height="400"></canvas>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <div class="info-row">
+                <span class="info-label">Position:</span>
+                <span class="info-value">X: <span id="posX">-2.80</span>m, Y: <span id="posY">0.40</span>m</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Velocity:</span>
+                <span class="info-value">Vx: <span id="velX">2.50</span>m/s, Vy: <span id="velY">8.00</span>m/s</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Angle:</span>
+                <span class="info-value"><span id="angle">72.6</span>°</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Speed:</span>
+                <span class="info-value"><span id="speed">8.38</span> m/s</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status:</span>
+                <span class="info-value" id="status">Calculating...</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./static//shot_planner.js"></script>
+</body>
+</html>
